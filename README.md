@@ -1,2 +1,3 @@
 # interview_challenge
-Challenge for Upland Software Interview
+
+Practicing to up my coding knowledge for interviews
