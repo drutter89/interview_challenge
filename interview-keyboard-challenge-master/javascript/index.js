@@ -21,6 +21,11 @@ const userObj = JSON.parse(userData);
 console.log(eventJSON.events[0]);
 console.log('======================================');
 
+// here I see that I get to the user but then its just random user id not sure how to get through that to the user age gender and device.
+const userID = userJSON.users.
+console.log(userJSON.users);
+console.log('======================================');
+
 // console.log('checking 2', userJSON);
 
 // 1. How many events were recorded?
@@ -44,9 +49,26 @@ function eventCount(){
 eventCount();
 
 //  2. What is the average age of all distinct users who visited the home page?
-function ageAverage(){
+
+    let ageTotal = 0;
+    let userTotal = 0;
+    function ageAverage(){
+        for (var i = 0; i < userJSON.users.length; i++){
+
+            console.log(userJSON.users[0]);
+
+            if (userJSON.users[i]){
+                userTotal++
+            }
+            ageTotal += userJSON.users[i].age;
+
+        }
+        console.log("THERE WERE A TOTAL OF", userTotal, "and an average age of", ageTotal/userTotal);
+        console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
+    
 
 }
+ageAverage();
 //  3. What is the overall conversion rate of a user visiting the home page and then purchasing an item? Note: if a user purchases multiple times, only count him/her once.  Note 2: The events are unordered.
 //  4. After a user visits the home page, what are the 3 most frequent things s/he would do next?
 //  5. After a user visits a blog post, what is the most frequent path of events s/he will follow to purchase the items in his/her cart? State any assumptions that you make.
