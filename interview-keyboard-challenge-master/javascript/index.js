@@ -2,35 +2,46 @@
 
 console.log('Localytics Code Challenge');
 
-// Here I'm creating two variables to bring in our JSON information to be able to be used in functions here in index.js
-const eventJSON = require('../data/events.json');
-const userJSON = require('../data/users.json');
-
-const events = JSON.stringify(eventJSON);
-const users = JSON.stringify(userJSON);
-
-const eventObj = JSON.parse(events);
 const express = require('express');
 const app = express();
 app.listen(3000, () => console.log("listening at 3000"));
 app.use(express.static('data'));
 
-// const eventObj = JSON.parse(eventJSON);
-// const userObj = JSON.parse(userJSON);
+// Here I'm creating two variables to bring in our JSON information to be able to be used in functions here in index.js
+const eventJSON = require('../data/events.json');
+const userJSON = require('../data/users.json');
 
-// console.log('checkign 1', eventJSON);
+const eventData = JSON.stringify(eventJSON);
+const userData = JSON.stringify(userJSON);
+
+const eventObj = JSON.parse(eventData);
+const userObj = JSON.parse(userData);
+
+// const singleEvent = eventJSON.events[i];
+console.log(eventJSON.events[0]);
 
 // console.log('checking 2', userJSON);
+
+
 
 
 // 1. How many events were recorded?
 let eventTotal = 0;
 function eventCount(){
-    for(const element of events){
-        eventTotal++;
+
+    for (var i = 0; i < eventJSON.events.length; i++){
+        if (eventJSON.events[i]){
+            eventTotal++;
+        }
     }
-    console.log("checking event total here", eventTotal, events);
+    console.log("THIS IS THE EVENT TOTAL",eventTotal);
+    console.log("------------------");
 }
+//     for(const element of eventData){
+//         eventTotal++;
+//     }
+//     console.log("checking event total here", eventTotal);
+// }
 eventCount();
 //  2. What is the average age of all distinct users who visited the home page?
 function ageAverage(){
