@@ -26,6 +26,12 @@ console.log(eventJSON.events[0]);
 
 
 // 1. How many events were recorded?
+
+// First I create a variable, eventTotal, to be my counter and set it to zero. I narrowed down that each event in the object returned in JSON was 
+// eventJSON.events[i]. This would be for in a loop where "i" is representative of the index, or single event, we are looking at. So I created a
+// function called eventCount that loops through all of the events object and says hey, if there is an event add 1 to eventTotal. Which in the end 
+//returned 39938 events.
+
 let eventTotal = 0;
 function eventCount(){
 
@@ -37,12 +43,8 @@ function eventCount(){
     console.log("THIS IS THE EVENT TOTAL",eventTotal);
     console.log("------------------");
 }
-//     for(const element of eventData){
-//         eventTotal++;
-//     }
-//     console.log("checking event total here", eventTotal);
-// }
 eventCount();
+
 //  2. What is the average age of all distinct users who visited the home page?
 function ageAverage(){
 
