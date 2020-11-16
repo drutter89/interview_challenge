@@ -6,7 +6,11 @@
   "scripts": {
     "start": "./index.js"
   },
-  "dependencies": {},
+  "dependencies": {
+    "fetch": "^1.1.0",
+    "modules": "^0.4.0",
+    "nodemon": "^2.0.6"
+  },
   "engines": {
     "node": ">=6.9.0"
   }
