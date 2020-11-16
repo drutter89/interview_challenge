@@ -19,11 +19,9 @@ const userObj = JSON.parse(userData);
 
 // const singleEvent = eventJSON.events[i];
 console.log(eventJSON.events[0]);
+console.log('======================================');
 
 // console.log('checking 2', userJSON);
-
-
-
 
 // 1. How many events were recorded?
 
@@ -40,8 +38,8 @@ function eventCount(){
             eventTotal++;
         }
     }
-    console.log("THIS IS THE EVENT TOTAL",eventTotal);
-    console.log("------------------");
+    console.log("THERE WAS A TOTAL OF", eventTotal, "EVENTS");
+    console.log("======================================");
 }
 eventCount();
 
