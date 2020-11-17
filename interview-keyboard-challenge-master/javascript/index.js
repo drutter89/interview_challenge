@@ -50,7 +50,7 @@ eventCount();
 // This gives me a list of each key for the user object so I can access each users age and other info which I should be able to use when looping through the object with a for in loop
 // console.log(Object.keys(userObj));
 
-// Since I alreayd had the object of Users I could actually just loop through each "key" and then look at the point in the object that key is referncing while looping through the object
+// Since I already had the object of Users I could actually just loop through each "key" and then look at the point in the object that key is referncing while looping through the object
 function homePageAverage() {
   let uniqueUserEvents = {};
   let ageTotal = 0;
@@ -69,10 +69,36 @@ function homePageAverage() {
     //Now here I use a for in loop to iterate through my nested users objects.
     //First I just tally each user entry and iterate userTotalNum to track each entry in the UserObj
 
-    for (const key in userObj) {
-      if (userObj[key]) {
+    if (userObj[key]) {
         userTotalNum++;
       }
+
+ 
+
+    // Here I noticed I wasn't taking distinct users into account. I was attempting to loop through the 
+    // let uniqueUsers = {};
+    // let testtCount = 0;
+    for (const key in userObj) {
+        let userEntry = userObj[key];
+        console.log(userEntry);
+        for (const key2 in uniqueUserEvents){
+            let uniqueUserEntry = uniqueUserEvents[key2];
+
+            if (uniqueUserEntry != userEntry){
+                uniqueUserEvents.push(userEntry);
+                uniqueCount++;
+            }
+        //     if(!userObj[key]){
+        //         uniqueUserEvents.push(key);
+        //         testtCount++;
+        //     }
+        //     // if (uniqueUserEvents[key2]){
+        //     //     uniqueCount++
+        //     // }   
+        }
+        
+
+     
 
       // here I was quickly making sure I could access the keys then use them to make sure I could narrow down each specific user entry. Then tested to make sure I could access the age of each specific user.
       // console.log("checking keys", key);
@@ -88,12 +114,12 @@ function homePageAverage() {
       if (key && key === eventID && eventName === "Visited home page") {
         // I leave in a console log like this when the script takes a second just to feel smart and watch something fly through the console while I wait.
         // Jokes aside I like to show how I understand this is looping through each key and then each obj that key is referencing to show understanding of the loop process.
-        console.log("Checking key here", key);
-        console.log("checking index");
-        console.log(
-          "This is the user object for they unique key previously logged",
-          userObj[key]
-        );
+        // console.log("Checking key here", key);
+        // console.log("checking index");
+        // console.log(
+        //   "This is the user object for they unique key previously logged",
+        //   userObj[key]
+        // );
         homePageUserTotal++;
         // this is short hand that just means ageTotal is equal to ageTotal plus userObj[key].age (aka we just keep adding each users age to the total age)
         // above we had already determined its a matching user that visited the home page.
@@ -110,14 +136,19 @@ function homePageAverage() {
       // }
     }
   }
-  console.log("=+=+=+=+=+=+=+=+=+==+=+=++=+++==++++++++======+++=+=+=+=+");
-  console.log("CHECKING TOTAL NUMBER OF ALL USERS ENTRIES", userTotalNum);
-  console.log("CHECKING ONLY HOME PAGE VISITS COUNT", homePageUserTotal);
-  console.log("CHECKING COMBINED AGE OF ALL HOMEPAGE USERS", ageTotal);
-  console.log(
-    "THIS SHOULD BE THE AVERAGE AGE OF USERS WHO VISITED THE HOMEPAGE",
-    ageTotal / homePageUserTotal
-  );
+  console.log("CHECKING TOTAL NUMBER OF ALL Unique USERS ENTRIES", uniqueCount);
+        console.log("CHECKING NEW OBJ", uniqueUserEvents);
+//   console.log("=+=+=+=+=+=+=+=+=+==+=+=++=+++==++++++++======+++=+=+=+=+");
+//   console.log("CHECKING TOTAL NUMBER OF ALL USERS ENTRIES", userTotalNum);
+//   console.log("CHECKING ONLY HOME PAGE VISITS COUNT", homePageUserTotal);
+//   console.log("CHECKING COMBINED AGE OF ALL HOMEPAGE USERS", ageTotal);
+//   console.log(
+//     "THIS SHOULD BE THE AVERAGE AGE OF USERS WHO VISITED THE HOMEPAGE",
+//     ageTotal / homePageUserTotal
+//   );
+ 
+//   console.log("CHECKING TOTAL NUMBER OF ALL USERS ENTRIES", userTotalNum);
+
 }
 
 homePageAverage();
@@ -127,31 +158,31 @@ homePageAverage();
 //Need to track how many people make a purchase after visiting the home page
 //First Ill start with seeing if I can match keys to see if there are multiple entries
 
-function purchaseConversion() {
-  let matches = 0;
-  let matchess = 0;
+// function purchaseConversion() {
+//   let matches = 0;
+//   let matchess = 0;
 
-  for (let i = 0; i < eventJSON.events.length; i++) {
-    let eventName = eventJSON.events[i].name;
-    let eventID = eventJSON.events[i].user_id;
+//   for (let i = 0; i < eventJSON.events.length; i++) {
+//     let eventName = eventJSON.events[i].name;
+//     let eventID = eventJSON.events[i].user_id;
 
-    for (const key in userObj) {
-      if (key === key) {
-        matches++;
-      }
-      if (key && key === eventID && eventName === "Visited home page") {
-        matchess++;
-      }
-    }
-    console.log("Not broken just looping please wait");
-  }
+//     for (const key in userObj) {
+//       if (key === key) {
+//         matches++;
+//       }
+//       if (key && key === eventID && eventName === "Visited home page") {
+//         matchess++;
+//       }
+//     }
+//     console.log("Not broken just looping please wait");
+//   }
 
-  console.log("===========-------------================");
-  console.log("CHECKING MATCHES", matches);
-  console.log("===========-------------================");
-  console.log("CHECKING SPECIFIC MATCHESS", matchess);
-}
-purchaseConversion();
+//   console.log("===========-------------================");
+//   console.log("CHECKING MATCHES", matches);
+//   console.log("===========-------------================");
+//   console.log("CHECKING SPECIFIC MATCHESS", matchess);
+// }
+// purchaseConversion();
 
 // I lost time once I got to this step, but here at this point we've in step one looped through the user events to log the total number events.
 // Then in step 2 we looped through the events as well as the user info to cross reference how many users visited the home page and get the average age of those users.
