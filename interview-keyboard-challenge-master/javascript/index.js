@@ -10,7 +10,15 @@ app.use(express.static('data'));
 // Here I'm creating two variables to bring in our JSON information to be able to be used in functions here in index.js
 const eventJSON = require('../data/events.json');
 const userJSON = require('../data/users.json');
-console.log("LOOKING HERE",userJSON.users);
+
+// creating a shortcut variables for shorter notation
+const userObj = userJSON.users;
+const userIds = Object.keys(userObj);
+
+// This here is just an example of how to traverse down to the age of the first user in the JSON file provided
+console.log("LOOKING HERE",userObj['f57f6dfd-72a6-4b93-99c8-9c388586e5de']);
+// This gives me a list of each key for the user object so I can access each users age and other info which I should be able to use when looping through the object with a for in loop
+console.log(Object.keys(userObj));
 
 
 // console.log(userList);
