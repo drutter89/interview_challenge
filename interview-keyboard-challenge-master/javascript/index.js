@@ -10,20 +10,25 @@ app.use(express.static('data'));
 // Here I'm creating two variables to bring in our JSON information to be able to be used in functions here in index.js
 const eventJSON = require('../data/events.json');
 const userJSON = require('../data/users.json');
+console.log("LOOKING HERE",userJSON.users);
 
-const eventData = JSON.stringify(eventJSON);
-const userData = JSON.stringify(userJSON);
 
-const eventObj = JSON.parse(eventData);
-const userObj = JSON.parse(userData);
+// console.log(userList);
+// function findUser() {
+//     // for(let i = 0; i < userJSON.length; i++){
+//     //     console.log("CHECKING REAL HARD", userJSON.users[i]);
+//     // }
+//     for (each user in userList){
+//         console.log(user.age);
+//     }
+// }
+// findUser();
 
-// const singleEvent = eventJSON.events[i];
 console.log(eventJSON.events[0]);
 console.log('======================================');
 
 // here I see that I get to the user but then its just random user id not sure how to get through that to the user age gender and device.
-const userID = userJSON.users.
-console.log(userJSON.users);
+const userID = userJSON.users
 console.log('======================================');
 
 // console.log('checking 2', userJSON);
@@ -63,8 +68,8 @@ eventCount();
             ageTotal += userJSON.users[i].age;
 
         }
-        console.log("THERE WERE A TOTAL OF", userTotal, "and an average age of", ageTotal/userTotal);
-        console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
+        // console.log("THERE WERE A TOTAL OF", userTotal, "and an average age of", ageTotal/userTotal);
+        // console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
     
 
 }
