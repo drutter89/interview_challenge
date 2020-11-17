@@ -73,8 +73,6 @@ function homePageAverage() {
         userTotalNum++;
       }
 
- 
-
     // Here I noticed I wasn't taking distinct users into account. I was attempting to loop through the 
     // let uniqueUsers = {};
     // let testtCount = 0;
