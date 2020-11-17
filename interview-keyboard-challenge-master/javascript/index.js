@@ -136,9 +136,8 @@ function purchaseConversion() {
     let eventID = eventJSON.events[i].user_id;
 
     for (const key in userObj) {
-      if (key) {
+      if (key === key) {
         matches++;
-        // if this is correct I believe this is reporting 5126 matches
       }
       if (key && key === eventID && eventName === "Visited home page") {
         matchess++;
