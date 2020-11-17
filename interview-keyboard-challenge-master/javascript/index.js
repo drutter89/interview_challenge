@@ -58,18 +58,6 @@ function homePageAverage() {
   let homePageUserTotal = 0;
   let uniqueCount = 0;
   for (let i = 0; i < eventJSON.events.length; i++) {
-    // for (const eventKey of eventObj){
-
-    //     if (eventKey === eventJSON.events.user_ID) {
-    //         console.log("checking eventKey", eventKey);
-    //         // console.log("checking eventKey")
-
-    //     uniqueUserEvents.push(eventJSON.events.user_D);
-    //     console.log("Unique",uniqueUserEvents);
-    //     uniqueCount++
-    //     }
-    // }
-
     // here I was making sure the loop was properly targeting the event so we can count how many of them were home page visits.
     // console.log("WHAT AM I LOOKING AT HERE", eventJSON.events[i].name);
 
