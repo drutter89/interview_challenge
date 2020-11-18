@@ -46,12 +46,7 @@ eventCount();
 
 //  2. What is the average age of all distinct users who visited the home page?
 
-// This here is just an example of how to traverse down to the age of the first user in the JSON file provided
-// console.log("LOOKING HERE",userObj['f57f6dfd-72a6-4b93-99c8-9c388586e5de']);
-// This gives me a list of each key for the user object so I can access each users age and other info which I should be able to use when looping through the object with a for in loop
-// console.log(Object.keys(userObj));
-
-// Since I already had the object of Users I could actually just loop through each "key" and then look at the point in the object that key is referncing while looping through the object
+// Since I already had the object of Users I could actually just loop through each "key" and then look at the point in the object that key is referencing while looping through the object
 
 let distinctUsers = [];
 let originalAgeTotal = 0;
@@ -75,7 +70,7 @@ function addAllUsers() {
     }
     console.log("THIS IS THE TOTAL OF ALL USER ENTRIES IN THE USER OBJ", originalUserTotalNum);
     console.log("THIS IS THE TOTAL AGE OF ALL ORIGINAL UNCHECKED USER ENTRIES", originalAgeTotal);
-    console.log("THIS IS THE AVERAGE AGE OF ALL USERS TO COMPARE TO", originalAgeTotal / originalUserTotalNum);
+    console.log("THIS IS THE AVERAGE AGE OF ALL USERS TO COMPARE TO HOMEPAGE USERS AVERAGE LATER", originalAgeTotal / originalUserTotalNum);
 }
 addAllUsers();
 
@@ -86,8 +81,6 @@ function findDistinctUsers() {
 
         // console.log("checking distinct age variable", originalAge);
         // console.log(originalUserEntry);
-        //for (const key2 in distinctUsers) {
-        // let distinctUserEntry = distinctUsers[key2];
 
         // so here Im thinking Im in my double loop where in my first loop the first iteration of that originalUserEntry is looking to the distinctUsers obj
         // and then saying hey if this original user data from userObj doesn't exist inside of distinctUsers to then add that user entry to Distinct users.
@@ -98,31 +91,22 @@ function findDistinctUsers() {
         // is NOT EQUAL to the original key unique id from my userObj THEN add this user to the distinct users obj and up the distinct user count.
         // console.log("making sure I still have my original key data", key);
 
-        // giving this a whirl now to try and look into distinct users and say if it doesn't contain the property, which we've made our userObj currently being iterated through, push to distinctUsers.
-        if (!distinctUsers.key) {           
+        if (!distinctUsers.key) {
             distinctUsers.push(originalUserEntry);
             uniqueUserCount++;
-            //   console.log("distinct");
-        } 
-            //trying this out now instead where I first say if the original user entry doesn't exist, add it, else (or) if it does exist then if the original data key doesnt equal the key2 (unique keys in our new obj)
-            //to the also add it in that instance. Had it on one line previously with &&. Seeing if breaking it up changes the flow of it as there will be both new users being added then iterating
-            //to a new event that will have that user again so we'd have to make sure that key (the unique id that identifies each user data object) doesn't already exist in the new object.
-            else if(!key) {
-                distinctUsers.push(originalUserEntry);
-                uniqueUserCount++;
-            }
-            // }
-            //}
+        } else if (!key) {
+            distinctUsers.push(originalUserEntry);
+            uniqueUserCount++;
         }
+    }
 
-    
+
     console.log("THERE WERE THIS MANY UNIQUE USERS", uniqueUserCount);
-    console.log("THIS IS MY NEW OBJECT", distinctUsers);
+    // console.log("THIS IS MY NEW OBJECT", distinctUsers);
 }
 findDistinctUsers();
 
 function placeholderName() {
-    // function loopEvents(){
     for (let i = 0; i < eventJSON.events.length; i++) {
         // here I was making sure the loop was properly targeting the event so we can count how many of them were home page visits.
         // console.log("WHAT AM I LOOKING AT HERE", eventJSON.events[i].name);
@@ -176,33 +160,17 @@ function placeholderName() {
                 // above we had already determined its a matching user that visited the home page.
                 homePageAgeTotal += userObj[key].age;
             }
-        //}
-
-
-            //I was beginning to try some things for question 3 here rather than create a new function as the script was starting to get long. Tried to refactor some previous stuff to help with that which took time.
-            // for (key in uniqueUserEvents){
-            //     console.log("checking the uniqueObj key", key);
-            //     if (key === userObj[key]){
-            //     uniqueUserEvents.push(userObj[key]);
-            //     console.log("checking the unique events here", uniqueUserEvents);
-            //     }
-            // }
-            // }
         }
     }
     console.log("CHECKING TOTAL NUMBER OF ALL Unique USERS ENTRIES", uniqueUserCount);
-    console.log("CHECKING NEW OBJ", distinctUsers);
+    // console.log("CHECKING NEW OBJ", distinctUsers);
     console.log("=+=+=+=+=+=+=+=+=+==+=+=++=+++==++++++++======+++=+=+=+=+");
     console.log("CHECKING TOTAL NUMBER OF ALL USERS ENTRIES", originalUserTotalNum);
     console.log("CHECKING HOW MANY USERS VISITED HOME PAGE", homePageUserTotal);
     console.log("CHECKING COMBINED AGE OF ALL HOMEPAGE USERS", homePageAgeTotal);
     console.log("THIS SHOULD BE THE AVERAGE AGE OF USERS WHO VISITED THE HOMEPAGE BUT IS NOT DISTINCT USERS", homePageAgeTotal / homePageUserTotal);
-    // console.log("CHECKING TOTAL NUMBER OF ALL USERS ENTRIES", originalUserTotalNum);
 }
 placeholderName();
-// function homePageUsersAge() {
-// }
-// homePageUsersAge();
 
 //  3. What is the overall conversion rate of a user visiting the home page and then purchasing an item? Note: if a user purchases multiple times, only count him/her once.  Note 2: The events are unordered.
 
@@ -218,7 +186,7 @@ placeholderName();
 //     let eventID = eventJSON.events[i].user_id;
 
 //     for (const key in userObj) {
-//       if (key === key) {
+//       if (key) {
 //         matches++;
 //       }
 //       if (key && key === eventID && eventName === "Visited home page") {
