@@ -54,41 +54,57 @@ eventCount();
 function homePageUsersAge() {
   let distinctUsers = {};
   let ageTotal = 0;
-  let userTotalNum = 0;
+  let originalUserTotalNum = 0;
   let homePageUserTotal = 0;
-  let uniqueCount = 0;
+  let uniqueUserCount = 0;
 
   function addAllUsers() {
     //Now here I use a for in loop to iterate through my nested users objects.
     //First I just tally each user entry and iterate userTotalNum to track each entry in the UserObj
     for (const key in userObj) {
-        console.log(userObj[key]);
-      if (userObj[key]) {
-        userTotalNum++;
+    let originalUserEntry = userObj[key];
+
+        // console.log(userObj[key]);
+      if (originalUserEntry) {
+        originalUserTotalNum++;
       }
     }
-    console.log("THIS IS THE TOTAL OF ALL USER ENTRIES IN THE USER OBJ", userTotalNum);
+    console.log("THIS IS THE TOTAL OF ALL USER ENTRIES IN THE USER OBJ", originalUserTotalNum);
   }
   addAllUsers();
 
-  function findDistinctUSers() {
+  function findDistinctUsers() {
     for (const key in userObj) {
       let originalUserEntry = userObj[key];
-      console.log(originalUserEntry);
-      // for (const key2 in distinctUsers){
-    //   let distinctUser = distinctUsers[key2];
+    //   console.log(originalUserEntry);
+      for (const key2 in distinctUsers){
+      let distinctUserEntry = distinctUsers[key2];
 
-      if (key != distinctUser.user_id) {
-        uniqueUserEvents.push(originalUserEntry);
-        uniqueCount++;
+//if this this user isn't in the distinctUsers object push it over and add it to distinctUsers(this is what Im trying to put in the if statement below)
+//not sure why Im having a mental block on how to reference this I thought I could just say !distinctUsers[key] to say that doesn't exist in the new object to then add it. 
+
+        // so here Im thinking Im in my double loop where in my first loop the first iteration of that originalUserEntry is looking to the distinctUsers obj
+        // and then saying hey if this original user data from userObj doesn't exist inside of distinctUsers to then add that user entry to Distinct users.
+        // then an else to say well if it does exist already is it a unique ID or does that unique key already exist within a user thats been added to Distinct Users. 
+
+
+        //so now this time Im trying to say if that originalUser data isn't in Distinct users AND ALSO if the key2 of my 2nd loop (i.e the way Im iterating through this object)
+        // is NOT EQUAL to the original key unique id from my userObj THEN add this user to the distinct users obj and up the distinct user count. 
+        console.log("making sure I still have my original key data", key);
+      if (!originalUserEntry && key2 != key) {
+        distinctUsers.push(originalUserEntry);
+        uniqueUserCount++;
+        console.log("distinct")
       }
     }
+}
+    console.log("THERE WERE THIS MANY UNIQUE USERS", uniqueUserCount);
     console.log("THIS IS MY NEW OBJECT", distinctUsers);
   }
-  findDistinctUSers();
+  findDistinctUsers();
 
 
-
+function placeholderName(){
   for (let i = 0; i < eventJSON.events.length; i++) {
     // here I was making sure the loop was properly targeting the event so we can count how many of them were home page visits.
     // console.log("WHAT AM I LOOKING AT HERE", eventJSON.events[i].name);
@@ -156,6 +172,7 @@ function homePageUsersAge() {
     // }
     // }
   }
+}
   //   console.log("CHECKING TOTAL NUMBER OF ALL Unique USERS ENTRIES", uniqueCount);
   //         console.log("CHECKING NEW OBJ", uniqueUserEvents);
   //   console.log("=+=+=+=+=+=+=+=+=+==+=+=++=+++==++++++++======+++=+=+=+=+");
