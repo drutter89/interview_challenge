@@ -51,128 +51,131 @@ eventCount();
 // console.log(Object.keys(userObj));
 
 // Since I already had the object of Users I could actually just loop through each "key" and then look at the point in the object that key is referncing while looping through the object
-function homePageUsersAge() {
-  let distinctUsers = {};
-  let ageTotal = 0;
-  let originalUserTotalNum = 0;
-  let homePageUserTotal = 0;
-  let uniqueUserCount = 0;
 
+let distinctUsers = {};
+let ageTotal = 0;
+let originalUserTotalNum = 0;
+let homePageUserTotal = 0;
+let uniqueUserCount = 0;
+function homePageUsersAge() {
   function addAllUsers() {
     //Now here I use a for in loop to iterate through my nested users objects.
     //First I just tally each user entry and iterate userTotalNum to track each entry in the UserObj
     for (const key in userObj) {
-    let originalUserEntry = userObj[key];
+      let originalUserEntry = userObj[key];
 
-        // console.log(userObj[key]);
+      console.log(originalUserEntry.age);
+      console.log(key);
       if (originalUserEntry) {
         originalUserTotalNum++;
       }
     }
-    console.log("THIS IS THE TOTAL OF ALL USER ENTRIES IN THE USER OBJ", originalUserTotalNum);
+    console.log(
+      "THIS IS THE TOTAL OF ALL USER ENTRIES IN THE USER OBJ",
+      originalUserTotalNum
+    );
   }
   addAllUsers();
 
   function findDistinctUsers() {
     for (const key in userObj) {
       let originalUserEntry = userObj[key];
-    //   console.log(originalUserEntry);
-      for (const key2 in distinctUsers){
-      let distinctUserEntry = distinctUsers[key2];
+      let originalAge = originalUserEntry.age;
+      console.log("checking distinct age variable", originalAge);
+      //   console.log(originalUserEntry);
+      for (const key2 in distinctUsers) {
+        let distinctUserEntry = distinctUsers[key2];
 
-//if this this user isn't in the distinctUsers object push it over and add it to distinctUsers(this is what Im trying to put in the if statement below)
-//not sure why Im having a mental block on how to reference this I thought I could just say !distinctUsers[key] to say that doesn't exist in the new object to then add it. 
-
+        //if this this user isn't in the distinctUsers object push it over and add it to distinctUsers(this is what Im trying to put in the if statement below)
+        //not sure why Im having a mental block on how to reference this I thought I could just say !distinctUsers[key] to say that doesn't exist in the new object to then add it.
         // so here Im thinking Im in my double loop where in my first loop the first iteration of that originalUserEntry is looking to the distinctUsers obj
         // and then saying hey if this original user data from userObj doesn't exist inside of distinctUsers to then add that user entry to Distinct users.
-        // then an else to say well if it does exist already is it a unique ID or does that unique key already exist within a user thats been added to Distinct Users. 
-
+        // then an else to say well if it does exist already is it a unique ID or does that unique key already exist within a user thats been added to Distinct Users.
 
         //so now this time Im trying to say if that originalUser data isn't in Distinct users AND ALSO if the key2 of my 2nd loop (i.e the way Im iterating through this object)
-        // is NOT EQUAL to the original key unique id from my userObj THEN add this user to the distinct users obj and up the distinct user count. 
+        // is NOT EQUAL to the original key unique id from my userObj THEN add this user to the distinct users obj and up the distinct user count.
         console.log("making sure I still have my original key data", key);
-      if (!originalUserEntry && key2 != key) {
-        distinctUsers.push(originalUserEntry);
-        uniqueUserCount++;
-        console.log("distinct")
+        if (!originalUserEntry && key2 != key) {
+          distinctUsers.push(originalUserEntry);
+          uniqueUserCount++;
+          console.log("distinct");
+        }
       }
     }
-}
     console.log("THERE WERE THIS MANY UNIQUE USERS", uniqueUserCount);
     console.log("THIS IS MY NEW OBJECT", distinctUsers);
   }
   findDistinctUsers();
 
+  function placeholderName() {
+    for (let i = 0; i < eventJSON.events.length; i++) {
+      // here I was making sure the loop was properly targeting the event so we can count how many of them were home page visits.
+      // console.log("WHAT AM I LOOKING AT HERE", eventJSON.events[i].name);
 
-function placeholderName(){
-  for (let i = 0; i < eventJSON.events.length; i++) {
-    // here I was making sure the loop was properly targeting the event so we can count how many of them were home page visits.
-    // console.log("WHAT AM I LOOKING AT HERE", eventJSON.events[i].name);
+      //This will reference the name in the event. This is where we are looking for "Visited home page"
+      let eventName = eventJSON.events[i].name;
+      //This will reference the unique user ID tied to each event entry.
+      let eventID = eventJSON.events[i].user_id;
 
-    //This will reference the name in the event. This is where we are looking for "Visited home page"
-    let eventName = eventJSON.events[i].name;
-    //This will reference the unique user ID tied to each event entry.
-    let eventID = eventJSON.events[i].user_id;
+      // Here I noticed I wasn't taking distinct users into account. I was attempting to loop through the
+      // let uniqueUsers = {};
+      // let testtCount = 0;
+      // for (const key in userObj) {
+      //     let originalUserEntry = userObj[key];
+      //     console.log(userEntry);
+      //     for (const key2 in distinctUsers){
+      //         let distinctUser = distinctUsers[key2];
 
-    // Here I noticed I wasn't taking distinct users into account. I was attempting to loop through the
-    // let uniqueUsers = {};
-    // let testtCount = 0;
-    // for (const key in userObj) {
-    //     let originalUserEntry = userObj[key];
-    //     console.log(userEntry);
-    //     for (const key2 in distinctUsers){
-    //         let distinctUser = distinctUsers[key2];
+      //         if (originalUserEntry != distinctUser){
+      //             uniqueUserEvents.push(originalUserEntry);
+      //             uniqueCount++;
+      //         }
+      //     if(!userObj[key]){
+      //         uniqueUserEvents.push(key);
+      //         testtCount++;
+      //     }
+      //     // if (uniqueUserEvents[key2]){
+      //     //     uniqueCount++
+      //     // }
+      //}
 
-    //         if (originalUserEntry != distinctUser){
-    //             uniqueUserEvents.push(originalUserEntry);
-    //             uniqueCount++;
-    //         }
-    //     if(!userObj[key]){
-    //         uniqueUserEvents.push(key);
-    //         testtCount++;
-    //     }
-    //     // if (uniqueUserEvents[key2]){
-    //     //     uniqueCount++
-    //     // }
-    //}
+      // here I was quickly making sure I could access the keys then use them to make sure I could narrow down each specific user entry. Then tested to make sure I could access the age of each specific user.
+      // console.log("checking keys", key);
+      // console.log("MORE TESTING", userObj[key]);
+      // console.log("TRYING TO NARROW DOWN TO THE AGE", userObj[key].age);
 
-    // here I was quickly making sure I could access the keys then use them to make sure I could narrow down each specific user entry. Then tested to make sure I could access the age of each specific user.
-    // console.log("checking keys", key);
-    // console.log("MORE TESTING", userObj[key]);
-    // console.log("TRYING TO NARROW DOWN TO THE AGE", userObj[key].age);
+      //Next I begin to check the conditions for the question. Since I've looped through both sets of Data inside of this double loop I can reference both sets of data.
+      //So I begin an if statement saying if the key, or the ID listed in the user object, matches the unique_id listed in the events object AND also that the name of the event
+      // is "Visited home page" then we increment our homePageUserTotal and we at the age of that home page visit entry to the total age variable to average out in the end.
+      //Saving the overall user entries logged in the beginning just helps illustrate in the end that the number of matched entries with unique IDs and a home-page-visits are different.
+      // In the end you have 6741 users who visited the home page with a combined age of 199488. When you divide that up it returns an average age of 29.593235425011127.
 
-    //Next I begin to check the conditions for the question. Since I've looped through both sets of Data inside of this double loop I can reference both sets of data.
-    //So I begin an if statement saying if the key, or the ID listed in the user object, matches the unique_id listed in the events object AND also that the name of the event
-    // is "Visited home page" then we increment our homePageUserTotal and we at the age of that home page visit entry to the total age variable to average out in the end.
-    //Saving the overall user entries logged in the beginning just helps illustrate in the end that the number of matched entries with unique IDs and a home-page-visits are different.
-    // In the end you have 6741 users who visited the home page with a combined age of 199488. When you divide that up it returns an average age of 29.593235425011127.
+      if (key === eventID && eventName === "Visited home page") {
+        // I leave in a console log like this when the script takes a second just to feel smart and watch something fly through the console while I wait.
+        // Jokes aside I like to show how I understand this is looping through each key and then each obj that key is referencing to show understanding of the loop process.
+        // console.log("Checking key here", key);
+        // console.log("checking index");
+        // console.log(
+        //   "This is the user object for they unique key previously logged",
+        //   userObj[key]
+        // );
+        homePageUserTotal++;
+        // this is short hand that just means ageTotal is equal to ageTotal plus userObj[key].age (aka we just keep adding each users age to the total age)
+        // above we had already determined its a matching user that visited the home page.
+        ageTotal += userObj[key].age;
+      }
 
-    if (key === eventID && eventName === "Visited home page") {
-      // I leave in a console log like this when the script takes a second just to feel smart and watch something fly through the console while I wait.
-      // Jokes aside I like to show how I understand this is looping through each key and then each obj that key is referencing to show understanding of the loop process.
-      // console.log("Checking key here", key);
-      // console.log("checking index");
-      // console.log(
-      //   "This is the user object for they unique key previously logged",
-      //   userObj[key]
-      // );
-      homePageUserTotal++;
-      // this is short hand that just means ageTotal is equal to ageTotal plus userObj[key].age (aka we just keep adding each users age to the total age)
-      // above we had already determined its a matching user that visited the home page.
-      ageTotal += userObj[key].age;
+      //I was beginning to try some things for question 3 here rather than create a new function as the script was starting to get long. Tried to refactor some previous stuff to help with that which took time.
+      // for (key in uniqueUserEvents){
+      //     console.log("checking the uniqueObj key", key);
+      //     if (key === userObj[key]){
+      //     uniqueUserEvents.push(userObj[key]);
+      //     console.log("checking the unique events here", uniqueUserEvents);
+      //     }
+      // }
+      // }
     }
-
-    //I was beginning to try some things for question 3 here rather than create a new function as the script was starting to get long. Tried to refactor some previous stuff to help with that which took time.
-    // for (key in uniqueUserEvents){
-    //     console.log("checking the uniqueObj key", key);
-    //     if (key === userObj[key]){
-    //     uniqueUserEvents.push(userObj[key]);
-    //     console.log("checking the unique events here", uniqueUserEvents);
-    //     }
-    // }
-    // }
   }
-}
   //   console.log("CHECKING TOTAL NUMBER OF ALL Unique USERS ENTRIES", uniqueCount);
   //         console.log("CHECKING NEW OBJ", uniqueUserEvents);
   //   console.log("=+=+=+=+=+=+=+=+=+==+=+=++=+++==++++++++======+++=+=+=+=+");
