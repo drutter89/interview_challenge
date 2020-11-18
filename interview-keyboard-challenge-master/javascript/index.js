@@ -49,6 +49,7 @@ eventCount();
 // Since I already had the object of Users I could actually just loop through each "key" and then look at the point in the object that key is referencing while looping through the object
 
 let distinctUsers = [];
+let distinctUsers2 = {key2: 'hello'};
 let originalAgeTotal = 0;
 let originalUserTotalNum = 0;
 let homePageUserTotal = 0;
@@ -78,6 +79,15 @@ function findDistinctUsers() {
     for (const key in userObj) {
         let originalUserEntry = userObj[key];
         let originalAge = originalUserEntry.age;
+        // console.log("CHECKING THIS 2ND OBJECT FOR A TEST",  distinctUsers2);
+        // console.log("CHECKING THIS 2ND OBJECT FOR A TEST",  distinctUsers2.key2);
+        // console.log("CHECKING key",  key);
+
+
+        //Here now I need to say if key doesn't exist in distinctUser2 then distinictUser2.key2 = key. This would move both our keys and then users to the object
+        //Then I'd be able to have an object of distinct users. If it comes to a user logging in again it should look and see that their key already exists and wouldn't add them.
+
+        
 
         // console.log("checking distinct age variable", originalAge);
         // console.log(originalUserEntry);
@@ -86,20 +96,27 @@ function findDistinctUsers() {
         // and then saying hey if this original user data from userObj doesn't exist inside of distinctUsers to then add that user entry to Distinct users.
         // then an else to say well if it does exist already is it a unique ID or does that unique key already exist within a user thats been added to Distinct Users.
         // if the unique user ID is new then we still push that user to distinct users. Then if it iterates to that same user with another event it shouldn't add to distinctUsers as that ID would alread exist.
+        
+                        // for(const key2 in distinctUsers2){
+                        //     if (key2 != key){
+                        //         distinctUsers2 = {
+                        //             key2: originalUserEntry
+                        //         }
+                        //     }
+                        // }
 
-        //so now this time Im trying to say if that originalUser data isn't in Distinct users AND ALSO if the key2 of my 2nd loop (i.e the way Im iterating through this object)
-        // is NOT EQUAL to the original key unique id from my userObj THEN add this user to the distinct users obj and up the distinct user count.
-        // console.log("making sure I still have my original key data", key);
+        // console.log("WHAT IS THIS", distinctUsers.originalUserEntry);
+        // currently looping through UserObj looking at each originalUserEntry. I need to say if this originalUserEntry does not exist in my distinctUsers array then push it to that array
+        
+        // Im just pushing the user object but I need to look at the key first to determine if that key already exists
 
-        if (!distinctUsers.key) {
+        
+        // if(key in userObj !dis)
+        if (!distinctUsers.originalUserEntry && key != distinctUsers) {
             distinctUsers.push(originalUserEntry);
             uniqueUserCount++;
-        } else if (!key) {
-            distinctUsers.push(originalUserEntry);
-            uniqueUserCount++;
-        }
+        }        
     }
-
 
     console.log("THERE WERE THIS MANY UNIQUE USERS", uniqueUserCount);
     // console.log("THIS IS MY NEW OBJECT", distinctUsers);
@@ -118,7 +135,6 @@ function placeholderName() {
         for (const key in userObj) {
             let originalUserEntry = userObj[key];
 
-            //     // made sure this was working and I'm seeing every user entry loop through
             //     // console.log(originalUserEntry);
             //     for (const key2 in distinctUsers){
             //         let distinctUser = distinctUsers[key2];
@@ -147,8 +163,8 @@ function placeholderName() {
             // if (!userObj[key] in distinctUsers) {
 
             if (eventName === "Visited home page" && key === eventID) {
-                // I leave in a console log like this when the script takes a second just to feel smart and watch something fly through the console while I wait.
-                // Jokes aside I like to show how I understand this is looping through each key and then each obj that key is referencing to show understanding of the loop process.
+                // I leave in a console log like this below when the script takes a second just to feel smart and watch something fly through the console while I wait.
+                // Jokes aside I like to show how I understand this is looping through each key and then each obj that key is referencing to show understanding of the loop process with objects.
                 // console.log("Checking key here", key);
                 // console.log("checking index");
                 // console.log(
