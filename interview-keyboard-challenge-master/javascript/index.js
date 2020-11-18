@@ -53,7 +53,7 @@ eventCount();
 
 // Since I already had the object of Users I could actually just loop through each "key" and then look at the point in the object that key is referncing while looping through the object
 
-let distinctUsers = {};
+let distinctUsers = [];
 let originalAgeTotal = 0;
 let originalUserTotalNum = 0;
 let homePageUserTotal = 0;
@@ -83,6 +83,7 @@ function findDistinctUsers() {
     for (const key in userObj) {
         let originalUserEntry = userObj[key];
         let originalAge = originalUserEntry.age;
+
         // console.log("checking distinct age variable", originalAge);
         // console.log(originalUserEntry);
         //for (const key2 in distinctUsers) {
@@ -98,8 +99,8 @@ function findDistinctUsers() {
         // console.log("making sure I still have my original key data", key);
 
         // giving this a whirl now to try and look into distinct users and say if it doesn't contain the property, which we've made our userObj currently being iterated through, push to distinctUsers.
-        if (!key in distinctUsers) {
-            distinctUsers.push(userObj[key]);
+        if (!distinctUsers.key) {           
+            distinctUsers.push(originalUserEntry);
             uniqueUserCount++;
             //   console.log("distinct");
         } 
